@@ -105,6 +105,9 @@
     _.each(remaining.slice(0, amount), function(name){
       instance[name] = generate(schema.properties[name]);
     });
+	if (schema.customType){
+		instance.customType = schema.customType;
+	}
     return instance;
   };
 
