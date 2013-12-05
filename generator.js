@@ -94,13 +94,14 @@
 
   gen["object"] = function(schema){
     var remaining = _.keys(schema.properties);
-    var instance = {};
+	var requiredProperties = findRequiredProperties(schema);
+	var instance = {};
+	_.each(requiredProperties, function (property){
+		instance[property] = generate(schema.properties[property]);
+	});
     var min = schema.minProperties;
     var max = schema.maxProperties;
-    _.each(schema.required, function(name){
-      instance[name] = generate(schema.properties[name]);
-    });
-    remaining = _.difference(remaining, schema.required);
+    remaining = _.difference(remaining, requiredProperties);
     var amount = _.random(Math.max(min, schema.required.length), max) - schema.required.length;
     _.each(remaining.slice(0, amount), function(name){
       instance[name] = generate(schema.properties[name]);
@@ -110,6 +111,22 @@
 	}
     return instance;
   };
+
+	//Support v3 and v4 styles
+	function findRequiredProperties (schema) {
+		if (_.isArray(schema.required)) {
+			return schema.required;
+		}
+		else {
+			var requiredProps = [];
+			_.each(schema.properties, function (property, name) {
+				if (property.required === true) {
+					requiredProps.push(name);
+				}
+			});
+			return requiredProps;
+		}
+	}
 
   gen["string"] = function(schema){
     var min = Math.max(1, schema.minLength);
