@@ -2,7 +2,7 @@
   "use strict";
   
   var _ = require("underscore");
-  var RandExp = require("randexp")
+  var RandExp = require("randexp");
   var randexp = RandExp.randexp;
 
   RandExp.prototype.anyRandChar = function(){
