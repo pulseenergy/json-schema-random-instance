@@ -155,7 +155,7 @@
     } else {
       return gen[choice.type[_.random(choice.type.length-1)]](choice);
     }
-  };
+  }
 
   function deepEqual(A, B){
     if(_.isArray(A) && _.isArray(B)){
@@ -167,7 +167,7 @@
     } else {
       return A === B;
     }
-  };
+  }
 
   function combineProperties(source, dest, prop, combiner, def){
     if(_.has(source, prop)){
@@ -183,7 +183,7 @@
         return def;
       }
     }
-  };
+  }
 
   function mergeSchemas(dest, source){
     var result = {};
@@ -410,7 +410,7 @@
     delete schema.allOf;
     schema = _.reduce(_.map(allOf, normalize), mergeSchemas, schema);
     return schema;
-  };
+  }
 
   module.exports = function(schema){
     var norm = normalize(schema);
