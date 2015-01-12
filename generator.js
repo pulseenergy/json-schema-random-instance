@@ -16,7 +16,7 @@
   var gen = {};
 
   // Generates an instance of a schema that has an enum property.
-  var gen_enum = function(schema){
+  gen["enum"] = function(schema){
     return schema["enum"][_.random(schema["enum"].length)];
   };
 
@@ -371,6 +371,9 @@
     };
     if(_.isString(schema.type)){
       schema.type = [schema.type];
+    }
+    if(_.has(schema, "enum")){
+      schema.type = ["enum"];
     }
     if(_.contains(schema.type, "number")){
       schema.type = _.union(schema.type, ["integer"]);
