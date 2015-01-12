@@ -41,7 +41,7 @@
     var amount;
     var items;
     var i;
-    var newITem;
+    var newItem;
     if(_.has(schema, "items")){
       items = schema.items;
       if(_.isArray(items)){
