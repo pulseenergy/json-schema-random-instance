@@ -17,7 +17,8 @@
 
   // Generates an instance of a schema that has an enum property.
   gen["enum"] = function(schema){
-    return schema["enum"][_.random(schema["enum"].length)];
+    var enumLength = schema["enum"].length;
+    return schema["enum"][_.random(enumLength) % enumLength];
   };
 
   var genFormat = function(format){
