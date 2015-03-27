@@ -5,7 +5,7 @@
   "author" : "Michael Lumish",
   "repository" : {
     "type" : "git",
-    "url" : "git://github.com/murgatroid99/json-schema-random-instance.git"
+    "url" : "git://github.com/pulseenergy/json-schema-random-instance.git"
   },
   "keywords" : [
     "json",
